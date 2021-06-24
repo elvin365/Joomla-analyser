@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="2.5" group="system" method="upgrade">
+	<name>System - JU Tabs</name>
+	<author>JoomUltra</author>
+	<creationDate>Sep 2013</creationDate>
+	<copyright>Copyright (C) 2010 - 2013 JoomUltra. All rights reserved.</copyright>
+	<license>License GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+	<authorEmail>admin@joomultra.com</authorEmail>
+	<authorUrl>www.joomultra.com</authorUrl>
+	<version>2.3</version>
+	<updateservers>
+		<server type="collection">http://www.joomultra.com/service/tracking/list.xml</server>
+	</updateservers>
+	<description>
+		<![CDATA[
+		<div style='font-weight: normal'>
+		<h2 style='color: #0A71A5;'>JU Tabs Plugin</strong></h2>
+		<span style='color: #ff0000;'><strong>Features:</strong></span>
+		<br/><br/>
+		Allows to use Tabs/Accordion/Simple slideshow anywhere. Supports multi types of content: Module name/Module id/Article id/Category/K2Item id/K2 category/Custom URL/HTML content. Multi themes and many effects. Every plugin option can be overwrited.
+		<br/><br/>
+		To create new tab theme, go to plugins/system/jutabs/tabs/themes/ , duplicate <b>default</b> folder then edit css files inside.
+		<br/><br/>
+		<strong><span style='color: #ff0000;'>Usage Instructions:</span></strong>
+		<br/><br />
+		Requirements: Joomla! 2.5.x, Joomla! 3.x<br/>
+		This module require jQuery javascript library to work. If jQuery has not been loaded on your site, you should install <b>Plugin JU Load jQuery</b>.
+		<br /><br />
+		<p><code>
+		{jutabs param01="value01" param02="value02" param03="value03"}<br/>
+		[tab title="Tab 01"]Tab content 01[/tab]<br/>
+		[tab title="Tab 02"]Tab content 02[/tab]<br/>
+		[tab title="Tab 03"]Tab content 03[/tab]<br/>
+		{/jutabs}
+		</code></p>
+		JU Tabs has <b><u>2 layers</u></b> of param.<br/>
+		<b><u>- Layer 1:</u></b> <b>The default params</b> are plugin params that you are setting in this JU Tabs plugin, they are general settings for all tabs on your site.<br/>
+		<b><u>- Layer 2:</u></b> <b>The plugin code params</b> that you can set via each plugin code, it can be different between each plugin code.<br/>
+		If a param is set in plugin code, JU Tabs will force to use that param, regardless the value in plugin setting.<br/>
+		If a param is NOT set in plugin code, JU Tabs will be fallback to use value in this plugin setting(general setting).<br/>
+		You can see the <b>param of each plugin option</b> and explanation for each option by <b>hover mouse to each field label</b>.<br/>
+		<br/>
+		<b><u>Example for overwriting params use plugin code (Layer 2):</u></b><br/>
+		1. To overwite <b>Default item</b> option, you can add this param: <b>defaultitem="2"</b><br/>
+		2. To overwite <b>Tab effect</b> option, you can add this param: <b>type="slidehorizontal"</b><br/>
+		3. To overwite <b>Next item animation transition</b> option, you can add this param: <b>nextitemeasing="easeInBounce"</b><br/>
+		4. ...
+		<br/><br/>
+		<b><span style='color: #ff0000;'>Note:</span></b>
+		<ul>
+		<li><i>Every tabs params/values is lower case, except values of <b>Current item animation transition/Next item animation transition</b> is case sensitivity.</i></li>
+		<li><i>If you copy code from examples below, you should paste it to article use <b>Code editor</b> mode (press <b>Toggle editor</b> button), it may not work properly if you paste it in <b>HTML editor</b> mode</i></li>
+		</ul>
+		<br/><br/>
+		<strong><span style='color: #ff0000;'>Parameters are not listed in plugin options:</span></strong><br/>
+		<i><small>(These params are dynamic settings for each jutab)</small></i>
+		<br/><br/>
+		<ul>
+		<li>
+		<b>loadcontent="moduleid/modulename/moduleposition/articleid/catid/k2itemid/k2catid:corresponding values seperate by commas"</b><br/>
+		If you specify a pair of <b>type:value</b> for <b>loadcontent</b> param, JU Tabs will generate tabs based on <b>type:value</b> and ignore sub tab content.<br/>
+		If you do NOT specify a pair of <b>type:value</b> for <b>loadcontent</b> param, JU Tabs will generate tabs based on <b>sub tab content:</b> <i>[tab]...[/tab]</i><br/>
+		You can use <b>loadcontent</b><i>(with single value)</i> for each sub tab in mixed content mode, by this way you can load many types of content into tab. For example: load both module, article, k2item into tabs.<br/>
+		If you <b>load modules into tabs</b>, please make sure that <b>modules have been assigned to the pages that showing JU Tabs</b>. If module only used to be loaded into JU Tabs, we recommend you assign it to all pages.<br/><br/>
+		
+		<b><u>Example for loadcontent:</u></b>
+		</li>
+		<li>
+		<b>loadcontent="moduleid:10,11,12"</b><br/>
+		Load <i>moduleid:10,11,12</i> into tabs
+		</li>
+		<li>
+		<b>loadcontent="modulename:mod_custom,mod_search"</b><br/>
+		Load <i>modulename:mod_custom,mod_search</i> into tabs
+		</li>
+		<li>
+		<b>loadcontent="moduleposition:positionA,positionB"</b><br/>
+		Load <i>moduleposition:positionA,positionB</i> into tabs
+		</li>
+		<li>
+		<b>loadcontent="articleid:10,11,12"</b><br/>
+		Load <i>articleid:10,11,12</i> into tabs
+		</li>
+		<li>
+		<b>loadcontent="catid:10,11,12"</b><br/>
+		Load <i>catid:10,11,12</i> into tabs
+		</li>
+		<li>
+		<b>loadcontent="k2itemid:10,11,12"</b><br/>
+		Load <i>k2itemid:10,11,12</i> into tabs
+		</li>
+		<li>
+		<b>loadcontent="k2catid:10,11,12"</b><br/>
+		Load <i>k2catid:10,11,12</i> into tabs
+		</li>
+		<li>
+		<b>loadcontent="sql:SQL_Query"</b><br/>
+		Load result of <b>SQL_Query</b> into tabs. <b>title</b> column will be assigned to title of tabs, <b>content</b> column will be assigned to content of tabs.<br/>
+		<b>Notice:</b> Load content from SQL is disabled by default, and it does not support <b>Ajax load</b>. If you need to use this feature, you need to set: <b>Loadcontent SQL: Yes</b>
+		This feature only accepts <b>SELECT</b> query, and due security reason, you if you enable this feature, we highly recommend you to change the <b>SQL Keyword</b>, so only who know this keyword can use this feature.
+		</li>
+		</ul>
+		<br/>
+		<strong><span style='color: #ff0000;'>Sample tabs:</span></strong>
+		<br/><br/>
+		<b>1. Load moduleids</b>
+		<p>
+		<code>{jutabs loadcontent="moduleid:10,11,12" position="top" changetab="click" effect="movehorizontal"} {/jutabs}</code>
+		</p>
+		<b>2. Load modulenames</b>
+		<p>
+		<code>{jutabs loadcontent="modulename:mod_custom,mod_search,mod_login" position="left" widthtabs="150px" changetab="mouseover" effect="fade"} {/jutabs}</code>
+		</p>
+		<b>3. Load modulepositions</b>
+		<p>
+		<code>{jutabs loadcontent="moduleposition:position-7" position="bottom" defaultitem="2"} {/jutabs}</code>
+		</p>
+		<b>4. Load articleids</b>
+		<p>
+		<code>{jutabs loadcontent="articleid:30,34,36,40" position="right" widthtabs="150px" width="600px" tabclass="0:redtab,1:bluetab,2:greentab"} {/jutabs}</code>
+		</p>
+		<b>5. Load catids</b>
+		<p>
+		<code>{jutabs loadcontent="catid:11,12" position="top" maxitems="5" view="introtext" ajax="true"} {/jutabs}</code>
+		</p>
+		<b>6. Load k2itemids</b>
+		<p>
+		<code>{jutabs loadcontent="k2itemid:15,16,17,18" view="fulltext" ajax="true"} {/jutabs}</code>
+		</p>
+		<b>7. Load k2catids</b>
+		<p>
+		<code>{jutabs loadcontent="k2catid:17,18" position="top" maxitems="7" view="introtext"} {/jutabs}</code>
+		</p>
+		<b>8. Load sql</b>
+		<p>
+		<code>{jutabs loadcontent="sql:SELECT name AS title, description AS content FROM #__mytable ORDER BY name ASC LIMIT 0,10" position="top" maxitems="7"} {/jutabs}</code>
+		</p>
+		<b>9. HTML content</b>
+		<p>
+		<code>{jutabs position="top" height="400px"}<br/>[tab title="Tab title 01"]&lt;img src="image01.jpg" alt="Image01"&gt;Tab content 01[/tab]<br/>[tab title="Tab title 02"]&lt;img src="image02.jpg" alt="Image02"&gt;Tab content 02[/tab]<br/>[tab title="Tab title 03"]&lt;img src="image03.jpg" alt="Image03"&gt;Tab content 03[/tab]<br/>{/jutabs}</code>
+		</p>
+		<b>10. Load mixed content</b><br/>
+		JU Tabs also supports to load mixed content into sub tab. Use <b>loadcontent</b> param <i>(with single value)</i> in each sub tab<br/>
+		<ul>
+		<li>
+		a. Use <b>loadcontent="moduleid:module_id"</b> to load module id into tab
+		</li>
+		<li>
+		b. Use <b>loadcontent="modulename:mod_module_name"</b> to load module name into tab
+		</li>
+		<li>
+		c. Use <b>loadcontent="articleid:article_id,introtext/fulltext"</b> to load aritcle id into tab.
+		</li>
+		<li>
+		d. Use <b>loadcontent="k2itemid:k2item_id,introtext/fulltext"</b> to load k2item id into tab.
+		</li>
+		<li>
+		e. Use <b>loadcontent="sql:SQL_Query"</b> to load sql result into tab.
+		</li>
+		<li>
+		f. Use <b>loadcontent="url:custom_url"</b> to load custom_url id into tab
+		</li>
+		<li>
+		g. You even can use other content plugin within JU Tabs, <b>just put the plugin code</b>, and JU Tabs will auto parse it and load into tab.
+		</li>
+		</ul>
+		<u>For example:</u><br/>
+		<p>
+		<code>{jutabs position="top" height="600px" ajax="true"}<br/>[tab title="Moduleid tab" loadcontent="moduleid:10"]This is default content incase false to load.[/tab]<br/>[tab title="Modulename tab" loadcontent="modulename:mod_custom"][/tab]<br/>[tab title="Articleid tab" loadcontent="articleid:14,introtext"][/tab]<br/>[tab title="K2itemid tab" loadcontent="k2itemid:26,fulltext"][/tab]<br/>[tab title="SQL Query tab" loadcontent="sql:SELECT name AS title, description AS content FROM #__mytable LIMIT 0,1"][/tab]<br/>[tab title="AnyURL tab" loadcontent="url:http://google.com"][/tab]<br/>[tab title="HTML tab"]&lt;b&gt;This is html content&lt;/b&gt;[/tab]<br/>[tab title="Content plugin tab"]An example to use content plugin code in JU Tabs: {rsform 1}[/tab]<br/>{/jutabs}</code>
+		</p>
+		<b>11. Accordion type</b><br/>
+		<u>Vertical mode:</u>
+		<p>
+		<code>{jutabs type="accordion" accordionmode="vertical"}<br/>[tab title="Tab title 01"]&lt;img src="image01.jpg" alt="Image01"&gt;Tab content 01[/tab]<br/>[tab title="Tab title 02"]&lt;img src="image02.jpg" alt="Image02"&gt;Tab content 02[/tab]<br/>[tab title="Tab title 03"]&lt;img src="image03.jpg" alt="Image03"&gt;Tab content 03[/tab]<br/>{/jutabs}</code>
+		</p>
+		<u>Horizontal mode:</u><br/>
+		<i><small>(You must specify a <b>height</b> value in this mode)</small></i>
+		<p>
+		<code>{jutabs type="accordion" accordionmode="horizontal" height="300px"}<br/>[tab title="Tab title 01"]&lt;img src="image01.jpg" alt="Image01"&gt;Tab content 01[/tab]<br/>[tab title="Tab title 02"]&lt;img src="image02.jpg" alt="Image02"&gt;Tab content 02[/tab]<br/>[tab title="Tab title 03"]&lt;img src="image03.jpg" alt="Image03"&gt;Tab content 03[/tab]<br/>{/jutabs}</code>
+		</p>
+		<b>12. Simple slideshow type</b>
+		<p>
+		<code>{jutabs type="slideshow"}<br/>[tab title="Tab title 01"]&lt;img src="image01.jpg" alt="Image01"&gt;Tab content 01[/tab]<br/>[tab title="Tab title 02"]&lt;img src="image02.jpg" alt="Image02"&gt;Tab content 02[/tab]<br/>[tab title="Tab title 03"]&lt;img src="image03.jpg" alt="Image03"&gt;Tab content 03[/tab]<br/>{/jutabs}</code>
+		</p>
+		<br/>
+		<strong><span style='color: #ff0000;'>Switch tab by Link/URL:</span></strong><br />
+		<p>- <b>Inside JUTabs</b>, if you want to switch to another tab from current JUTabs <b>by link</b>, you can use the link: <b>#<span style='color: #CC0000'>jutabs</span>-<span style='color: #00CC00'>X</span></b>, <b><span style='color: #00CC00'>X</span></b> is tab number you want to switch to, <b>0=First tab</b>, this anchor link only work if <b>Ajax load: No</b>.<br/>For example, to switch to <b>2nd tab</b>, you can use this link: <b>&lt;a href="#<span style='color: #CC0000'>jutabs</span>-<span style='color: #00CC00'>1</span>"&gt;Switch to 2nd tab&lt;/a&gt;</b>, you can also switch to <b>next/prev</b> tab use this link<i>(next/prev tab to be switched to depends on the tab which you put the link)</i>: <b>&lt;a href="#<span style='color: #CC0000'>jutabs</span>-<span style='color: #00CC00'>next</span>"&gt;Switch to next tab&lt;/a&gt;</b> or <b>&lt;a href="#<span style='color: #CC0000'>jutabs</span>-<span style='color: #00CC00'>prev</span>"&gt;Switch to prev tab&lt;/a&gt;</b></p>
+		<p>- <b>Outside JUTabs</b>, if you want to open a tab of a JUTabs <b>by link</b>, you can set <b>tab name</b> via tab param like this: <b>{jutabs name="<span style='color: #CC0000'>tabname</span>" ...}...{/jutabs}</b>, then use the link with name of tab like this to open tab: <b>&lt;a href="#<span style='color: #CC0000'>tabname</span>-<span style='color: #00CC00'>1</span>"&gt;Open 2nd tab of tabname&lt;/a&gt;</b></p>
+		- <b>To open a tab when page load by URL:</b><br/>
+		<b>1.</b> Set name for tab: <b>{jutabs name="<span style='color: #CC0000'>tabname</span>" ...}...{/jutabs}</b><br/>
+		<b>2.</b> For example: To open <b>2nd tab</b>, use this link: <b>http://yoursite.com/thePageContainsJUTabs/#<span style='color: #CC0000'>tabname</span>-<span style='color: #00CC00'>1</span></b><br/>
+		<p><b>Note:</b> <i>When set tab name, make sure the tab name is unique if you have more than one tab in a page.</i></p>
+		
+		<br/>
+		<strong><span style='color: #ff0000;'>Upgrade Methods:</span></strong><br />
+		<ol>
+		  <li>Standard joomla uninstall / reinstall method. Module supports upgrade method. </li>
+		  <li>You can install new version directly over this version. Uninstallation is not required. </li>
+		  <li>Backup any customized file before upgrading.</li>
+		</ol>
+		<br />
+		<strong><span style='color: #ff0000;'>Support:</span></strong>
+		<br />
+		<ul>
+		<li>If you need any help, please ask in <a href="http://www.joomultra.com/forums.html" title="JoomUltra Forum">our forum</a>.</li>
+		<li>If you use JU Tabs, please post a review for <a href="http://extensions.joomla.org/extensions/news-display/article-elements/articles-tabs/22750" target="_blank" title="Post a review for JU Tabs">JU Tabs on JED</a></li>
+		</ul>
+		<br /><br />
+		<small>Copyright © 2010 - 2013 <a href='http://www.joomultra.com/' title='Visit JoomUltra.com!'>JoomUltra.com</a>.</small>
+		</div>
+		]]>
+	</description>
+	<files>
+		<filename plugin="jutabs">jutabs.php</filename>
+		<filename>index.html</filename>
+		<folder>admin</folder>
+		<folder>tabs</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.plg_system_jutabs.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/plugins/system/jutabs/admin/elements/">
+				<field 
+					name="juformstyle" 
+					type="juformstyle" />
+				
+				<field type="jumessage"
+					description="PLG_JUTABS_INSTRUCTION"
+					class="jufilter_loadcontent_type_custom juicon-info"
+				/>
+				
+				<field name="disable_tab"
+					type="radio"
+					default="0"
+					class="btn-group"
+					label="PLG_JUTABS_DISABLE_TABS"
+					description="PLG_JUTABS_DISABLE_TABS_DESC">
+					<option
+						value="1">JYES</option>
+					<option
+						value="0">JNO</option>
+				</field>
+				
+				<field name="loadjquery"
+					type="list"
+					default="2"
+					label="PLG_JUTABS_LOAD_JQUERY"
+					description="PLG_JUTABS_LOAD_JQUERY_DESC">
+					<option
+						value="1">PLG_JUTABS_ALWAYS</option>
+					<option
+						value="2">PLG_JUTABS_WHEN_NOT_EXISTS</option>
+					<option
+						value="0">JNO</option>
+				</field>
+				
+				<field name="loadjqueryfrom"
+					type="list"
+					default="1"
+					label="PLG_JUTABS_LOAD_JQUERY_FROM"
+					description="PLG_JUTABS_LOAD_JQUERY_FROM_DESC">
+					<option
+						value="1">PLG_JUTABS_LOCAL_FILE</option>
+					<option
+						value="2">PLG_JUTABS_GOOGLE_CDN</option>
+				</field>
+					
+				<field
+					type="jugroup"
+					name="basic_settings"
+					title="PLG_JUTABS_BASIC_SETTINGS"
+				/>
+				
+				<field name="theme"
+					type="jutabstheme"
+					label="PLG_JUTABS_TAB_THEME"
+					description="PLG_JUTABS_TAB_THEME_DESC"
+				/>
+				
+				<field name="width"
+					type="text"
+					default="100%"
+					label="PLG_JUTABS_WIDTH"
+					description="PLG_JUTABS_WIDTH_DESC" 
+				/>
+				
+				<field name="minwidth"
+					type="text"
+					default="auto"
+					label="PLG_JUTABS_MIN_WIDTH"
+					description="PLG_JUTABS_MIN_WIDTH_DESC" 
+				/>
+				
+				<field name="maxwidth"
+					type="text"
+					default="auto"
+					label="PLG_JUTABS_MAX_WIDTH"
+					description="PLG_JUTABS_MAX_WIDTH_DESC" 
+				/>
+				
+				<field name="height"
+					type="text"
+					default="auto"
+					label="PLG_JUTABS_HEIGHT"
+					description="PLG_JUTABS_HEIGHT_DESC" 
+				/>
+				
+				<field name="widthtabs"
+					type="text"
+					default="150px"
+					label="PLG_JUTABS_WIDTH_TABS"
+					description="PLG_JUTABS_WIDTH_TABS_DESC" 
+				/>
+				
+				<field name="heighttabs"
+					type="text"
+					default="auto"
+					label="PLG_JUTABS_HEIGHT_TABS"
+					description="PLG_JUTABS_HEIGHT_TABS_DESC" 
+				/>
+				
+				<field name="defaultitem"
+					type="text"
+					default="0"
+					filter="integer"
+					class="validate-numeric"
+					label="PLG_JUTABS_DEFAULT_ITEM"
+					description="PLG_JUTABS_DEFAULT_ITEM_DESC" 
+				/>
+				
+				<field name="maxitems"
+					type="text"
+					default="0"
+					filter="integer"
+					class="validate-numeric"
+					label="PLG_JUTABS_MAX_ITEMS"
+					description="PLG_JUTABS_MAX_ITEMS_DESC" 
+				/>
+				
+				<field name="history"
+					type="radio"
+					default="false"
+					class="btn-group"
+					label="PLG_JUTABS_HISTORY"
+					description="PLG_JUTABS_HISTORY_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="changetab"
+					type="list"
+					default="click"
+					label="PLG_JUTABS_HOW_TO_CHANGE_TAB"
+					description="PLG_JUTABS_HOW_TO_CHANGE_TAB_DESC">
+					<option
+						value="mouseover">MouseOver</option>
+					<option
+						value="click">Click</option>
+					<option
+						value="dblclick">Double Click</option>
+				</field>
+				
+				<field name="initialeffect"
+					type="radio"
+					default="false"
+					class="btn-group"
+					label="PLG_JUTABS_INITIAL_EFFECT"
+					description="PLG_JUTABS_INITIAL_EFFECT_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="ajax"
+					type="radio"
+					default="false"
+					class="btn-group"
+					label="PLG_JUTABS_AJAX_LOAD"
+					description="PLG_JUTABS_AJAX_LOAD_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="duration"
+					type="text"
+					default="400"
+					filter="integer"
+					class="validate-numeric"
+					label="PLG_JUTABS_DURATION"
+					description="PLG_JUTABS_DURATION_DESC" />
+					
+				<field name="tabeffect"
+					type="list"
+					default="default"
+					label="PLG_JUTABS_TAB_EFFECT"
+					description="PLG_JUTABS_TAB_EFFECT_DESC">
+					<option
+						value="default">Default</option>
+					<option
+						value="fade">Fade</option>
+					<option
+						value="slidehorizontal">SlideHorizontal</option>
+					<option
+						value="slidevertical">SlideVertical</option>
+					<option
+						value="horizontal">Horizontal</option>
+					<option
+						value="vertical">Vertical</option>
+					<option
+						value="movehorizontal">MoveHorizontal</option>
+					<option
+						value="movevertical">MoveVertical</option>
+				</field>
+				
+				<field name="accordioneffect"
+					type="list"
+					default="default"
+					label="PLG_JUTABS_ACCORDION_EFFECT"
+					description="PLG_JUTABS_ACCORDION_EFFECT_DESC">
+					<option
+						value="default">Default</option>
+					<option
+						value="fade">Fade</option>
+					<option
+						value="slide">Slide</option>
+				</field>
+				
+				<field name="currentitemeasing"
+					type="list"
+					default="linear"
+					label="PLG_JUTABS_CURRENT_ITEM_EASING"
+					description="PLG_JUTABS_CURRENT_ITEM_EASING_DESC">
+					<option
+						value="linear">Linear</option>
+					<option
+						value="swing">Swing</option>
+					<option
+						value="easeInQuad">easeInQuad</option>
+					<option
+						value="easeOutQuad">easeOutQuad</option>
+					<option
+						value="easeInOutQuad">easeInOutQuad</option>
+					<option
+						value="easeInCubic">easeInCubic</option>
+					<option
+						value="easeOutCubic">easeOutCubic</option>
+					<option
+						value="easeInOutCubic">easeInOutCubic</option>
+					<option
+						value="easeInQuart">easeInQuart</option>
+					<option
+						value="easeOutQuart">easeOutQuart</option>
+					<option
+						value="easeInOutQuart">easeInOutQuart</option>
+					<option
+						value="easeInQuint">easeInQuint</option>
+					<option
+						value="easeOutQuint">easeOutQuint</option>
+					<option
+						value="easeInOutQuint">easeInOutQuint</option>
+					<option
+						value="easeInSine">easeInSine</option>
+					<option
+						value="easeOutSine">easeOutSine</option>
+					<option
+						value="easeInOutSine">easeInOutSine</option>
+					<option
+						value="easeInExpo">easeInExpo</option>
+					<option
+						value="easeOutExpo">easeOutExpo</option>
+					<option
+						value="easeInOutExpo">easeInOutExpo</option>
+					<option
+						value="easeInCirc">easeInCirc</option>
+					<option
+						value="easeOutCirc">easeOutCirc</option>
+					<option
+						value="easeInOutCirc">easeInOutCirc</option>
+					<option
+						value="easeInElastic">easeInElastic</option>
+					<option
+						value="easeOutElastic">easeOutElastic</option>
+					<option
+						value="easeInOutElastic">easeInOutElastic</option>
+					<option
+						value="easeInBack">easeInBack</option>
+					<option
+						value="easeOutBack">easeOutBack</option>
+					<option
+						value="easeInOutBack">easeInOutBack</option>
+					<option
+						value="easeInBounce">easeInBounce</option>
+					<option
+						value="easeOutBounce">easeOutBounce</option>
+					<option
+						value="easeInOutBounce">easeInOutBounce</option>
+				</field>
+				
+				<field name="nextitemeasing"
+					type="list"
+					default="linear"
+					label="PLG_JUTABS_NEXT_ITEM_EASING"
+					description="PLG_JUTABS_NEXT_ITEM_EASING_DESC">
+					<option
+						value="linear">Linear</option>
+					<option
+						value="swing">Swing</option>
+					<option
+						value="easeInQuad">easeInQuad</option>
+					<option
+						value="easeOutQuad">easeOutQuad</option>
+					<option
+						value="easeInOutQuad">easeInOutQuad</option>
+					<option
+						value="easeInCubic">easeInCubic</option>
+					<option
+						value="easeOutCubic">easeOutCubic</option>
+					<option
+						value="easeInOutCubic">easeInOutCubic</option>
+					<option
+						value="easeInQuart">easeInQuart</option>
+					<option
+						value="easeOutQuart">easeOutQuart</option>
+					<option
+						value="easeInOutQuart">easeInOutQuart</option>
+					<option
+						value="easeInQuint">easeInQuint</option>
+					<option
+						value="easeOutQuint">easeOutQuint</option>
+					<option
+						value="easeInOutQuint">easeInOutQuint</option>
+					<option
+						value="easeInSine">easeInSine</option>
+					<option
+						value="easeOutSine">easeOutSine</option>
+					<option
+						value="easeInOutSine">easeInOutSine</option>
+					<option
+						value="easeInExpo">easeInExpo</option>
+					<option
+						value="easeOutExpo">easeOutExpo</option>
+					<option
+						value="easeInOutExpo">easeInOutExpo</option>
+					<option
+						value="easeInCirc">easeInCirc</option>
+					<option
+						value="easeOutCirc">easeOutCirc</option>
+					<option
+						value="easeInOutCirc">easeInOutCirc</option>
+					<option
+						value="easeInElastic">easeInElastic</option>
+					<option
+						value="easeOutElastic">easeOutElastic</option>
+					<option
+						value="easeInOutElastic">easeInOutElastic</option>
+					<option
+						value="easeInBack">easeInBack</option>
+					<option
+						value="easeOutBack">easeOutBack</option>
+					<option
+						value="easeInOutBack">easeInOutBack</option>
+					<option
+						value="easeInBounce">easeInBounce</option>
+					<option
+						value="easeOutBounce">easeOutBounce</option>
+					<option
+						value="easeInOutBounce">easeInOutBounce</option>
+				</field>
+				
+				<field name="swipetouch"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_SWIPETOUCH"
+					description="PLG_JUTABS_SWIPETOUCH_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="triggerwindowresize"
+					type="radio"
+					default="false"
+					class="btn-group"
+					label="PLG_JUTABS_TRIGGERWINDOWRESIZE"
+					description="PLG_JUTABS_TRIGGERWINDOWRESIZE_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="tabclass"
+					type="textarea"
+					cols="30"
+					rows="3"
+					default=""
+					label="PLG_JUTABS_TAB_CLASS"
+					description="PLG_JUTABS_TAB_CLASS_DESC" 
+				/>
+				
+				<field name="view"
+					type="radio"
+					default="introtext"
+					class="btn-group"
+					label="PLG_JUTABS_VIEW"
+					description="PLG_JUTABS_VIEW_DESC">
+					<option
+						value="introtext">Intro text</option>
+					<option
+						value="fulltext">Full text</option>
+				</field>
+				
+				<field name="loadcontentsql"
+					type="radio"
+					default="0"
+					class="btn-group"
+					label="PLG_JUTABS_LOADCONTENT_SQL"
+					description="PLG_JUTABS_LOADCONTENT_SQL_DESC">
+					<option
+						value="1">JYES</option>
+					<option
+						value="0">JNO</option>
+				</field>
+				
+
+                           
+				<field name="sqlkeyword"
+					type="text"
+					default="sql"
+					label="PLG_JUTABS_SQLKEYWORD"
+					description="PLG_JUTABS_SQLKEYWORD_DESC" />
+				
+				<field type="jumessage"
+					class="box-blank"
+					description="PLG_JUTABS_SEPERATOR"
+				/>
+				
+				<field name="type"
+					type="radio"
+					default="tab"
+					class="btn-group"
+					label="PLG_JUTABS_TAB_TYPE_LBL"
+					description="PLG_JUTABS_TAB_TYPE_DESC">
+					<option
+						value="tab">PLG_JUTABS_TAB</option>
+					<option
+						value="accordion">PLG_JUTABS_ACCORDION</option>
+					<option
+						value="slideshow">PLG_JUTABS_SLIDESHOW</option>
+				</field>
+				
+				<field
+					type="jugroup"
+					name="tab_settings"
+					title="PLG_JUTABS_TAB_SETTINGS"
+				/>
+				
+				<field name="position"
+					type="list"
+					default="top"
+					label="PLG_JUTABS_POSITION"
+					description="PLG_JUTABS_POSITION_DESC">
+					<option
+						value="top">Top</option>
+					<option
+						value="bottom">Bottom</option>
+					<option
+						value="left">Left</option>
+					<option
+						value="right">Right</option>
+				</field>
+				
+				<field name="tabscroll"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_TABSCROLL"
+					description="PLG_JUTABS_TABSCROLL_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field
+					type="jugroup"
+					name="accordion_settings"
+					title="PLG_JUTABS_ACCORDION_SETTINGS"
+				/>
+				
+				<field name="accordionmode"
+					type="radio"
+					default="vertical"
+					class="btn-group"
+					label="PLG_JUTABS_ACCORDION_MODE"
+					description="PLG_JUTABS_ACCORDION_MODE_DESC">
+					<option
+						value="vertical">Vertical</option>
+					<option
+						value="horizontal">Horizontal</option>
+				</field>
+				
+				<field name="responsive"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_RESPONSIVE"
+					description="PLG_JUTABS_RESPONSIVE_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="closetab"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_CLOSE_TAB"
+					description="PLG_JUTABS_CLOSE_TAB_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="openmultitabs"
+					type="radio"
+					default="false"
+					class="btn-group"
+					label="PLG_JUTABS_OPEN_MULTITABS"
+					description="PLG_JUTABS_OPEN_MULTITABS_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field
+					type="jugroup"
+					name="slideshow_settings"
+					title="PLG_JUTABS_SLIDESHOW_SETTINGS"
+				/>
+				
+				<field name="showtitle"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_SHOW_TITLE"
+					description="PLG_JUTABS_SHOW_TITLE_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="nextprev"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_NEXT_PRE_BTN"
+					description="PLG_JUTABS_NEXT_PRE_BTN_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="navigation"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_SHOW_NAVIGATION"
+					description="PLG_JUTABS_SHOW_NAVIGATION_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="titleinnavigation"
+					type="radio"
+					default="false"
+					class="btn-group"
+					label="PLG_JUTABS_SHOW_TITLE_IN_NAVIGATION"
+					description="PLG_JUTABS_SHOW_TITLE_IN_NAVIGATION_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="controlbuttons"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_SHOW_CONTROL_BTN"
+					description="PLG_JUTABS_SHOW_CONTROL_BTN_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="autoplay"
+					type="radio"
+					default="false"
+					class="btn-group"
+					label="PLG_JUTABS_SLIDE_AUTOPLAY"
+					description="PLG_JUTABS_SLIDE_AUTOPLAY_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="intervaltime"
+					type="text"
+					default="3000"
+					filter="integer"
+					class="validate-numeric"
+					label="PLG_JUTABS_INTERVAL_TIME"
+					description="PLG_JUTABS_INTERVAL_TIME_DESC" 
+				/>
+				
+				<field name="autopause"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_SLIDE_AUTOPAUSE"
+					description="PLG_JUTABS_SLIDE_AUTOPAUSE_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="clickable"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_SLIDE_CLICKABLE"
+					description="PLG_JUTABS_SLIDE_CLICKABLE_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+				<field name="rotate"
+					type="radio"
+					default="true"
+					class="btn-group"
+					label="PLG_JUTABS_ROTATE"
+					description="PLG_JUTABS_ROTATE_DESC">
+					<option
+						value="true">JYES</option>
+					<option
+						value="false">JNO</option>
+				</field>
+				
+			</fieldset>
+			<fieldset name="advanced" addfieldpath="/plugins/system/jutabs/admin/elements/">
+				
+				<field type="jumessage"
+					description="PLG_JUTABS_PATH_REGEX_INSTRUCTION"
+					class="juicon-info"
+				/>
+				
+				<field name="enablepaths"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_ENABLE_PATHS"
+					description="PLG_JUTABS_ENABLE_PATHS_DESC" 
+				/>
+				
+				<field name="disablepaths"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_DISABLE_PATHS"
+					description="PLG_JUTABS_DISABLE_PATHS_DESC" 
+				/>
+				
+				<field name="handletabindisabledpage"
+					type="list"
+					default="1"
+					label="PLG_JUTABS_HANDLE_TAB_IN_DISABLED_PAGE"
+					description="PLG_JUTABS_HANDLE_TAB_IN_DISABLED_PAGE_DESC">
+					<option
+						value="1">PLG_JUTABS_DONT_PARSE_TAB_CODE</option>
+					<option
+						value="2">PLG_JUTABS_REMOVE_TAB_CODE</option>
+				</field>
+				
+				<field name="onLoad"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_ONLOAD"
+					description="PLG_JUTABS_ONLOAD_DESC" 
+				/>
+				
+				<field name="onBeforeClick"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_ONBEFORECLICK"
+					description="PLG_JUTABS_ONBEFORECLICK_DESC" 
+				/>
+				
+				<field name="onClick"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_ONCLICK"
+					description="PLG_JUTABS_ONCLICK_DESC" 
+				/>
+				
+				<field name="addscript"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_ADDSCRIPT"
+					description="PLG_JUTABS_ADDSCRIPT_DESC" 
+				/>
+				
+				<field name="addscriptdeclaration"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_ADDSCRIPTDECLARATION"
+					description="PLG_JUTABS_ADDSCRIPTDECLARATION_DESC" 
+				/>
+				
+				<field name="addstylesheet"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_ADDSTYLESHEET"
+					description="PLG_JUTABS_ADDSTYLESHEET_DESC" 
+				/>
+				
+				<field name="addstyledeclaration"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_ADDSTYLEDECLARATION"
+					description="PLG_JUTABS_ADDSTYLEDECLARATION_DESC" 
+				/>
+				
+				<field name="stripscripts"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_STRIPSCRIPTS"
+					description="PLG_JUTABS_STRIPSCRIPTS_DESC" 
+				/>
+				
+				<field name="stripstylesheets"
+					type="textarea"
+					cols="40"
+					rows="5"
+					default=""
+					filter="raw"
+					label="PLG_JUTABS_STRIPSTYLESHEETS"
+					description="PLG_JUTABS_STRIPSTYLESHEETS_DESC" 
+				/>
+				
+			</fieldset>
+		</fields>
+	</config>
+</extension>
